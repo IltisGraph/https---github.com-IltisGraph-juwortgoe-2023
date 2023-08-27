@@ -23,8 +23,9 @@ const db = getDatabase();
 
 let submitted = localStorage.getItem("submitted")
 
-if (submitted == true) {
-    window.location.replace("https://iltisgraph.github.io/juwortgoe-2023-2024/submitted.html")
+
+if (submitted === "true") {
+    window.location.replace("./submitted.html")
 }
 
 document.getElementById("submit").onclick = function() {
@@ -48,7 +49,7 @@ document.getElementById("submit").onclick = function() {
                     let counted = data[key]
                     console.log(data);
                     // console.log(counted)
-                    // TODO: increase counter
+                    
                     set(ref(db, "words/"+key), {
                         count: counted["count"] + 1
                     });
@@ -62,7 +63,9 @@ document.getElementById("submit").onclick = function() {
                 });
             }
             document.getElementById("texter").innerText = "Wort " + submitted_word + " erfolgreich eingereicht!";
-            localStorage.setItem("submitted", true);
+            localStorage.setItem("submitted", "true");
+            window.location.replace("./submitted.html")
+
 
         } else {
             console.log("Bruh Moment rn");
